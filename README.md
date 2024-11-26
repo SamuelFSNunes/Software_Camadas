@@ -130,6 +130,6 @@ If the services are not functioning as expected, follow these troubleshooting st
 
 This project is maintained by:
 
-- Erick M. Cassoli - [GitHub](https://github.com/ErickCassoli)
-- Vinicius Antunes - [GitHub](https://github.com/viniciusantunes26)
+- Renan Henrique - [GitHub](https://github.com/RenanHB2SL)
+- Samuel Nunes - [GitHub](https://github.com/SamuelFSNunes)
 - Rafael Mattos - [GitHub](https://github.com/RafaMattss)
