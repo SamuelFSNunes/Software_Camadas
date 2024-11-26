@@ -69,6 +69,6 @@ Se os serviços não estiverem funcionando conforme esperado, siga estas etapas 
 
 Este projeto é mantido por:
 
-- Erick M. Cassoli - [GitHub](https://github.com/ErickCassoli)
-- Vinicius Antunes - [GitHub](https://github.com/viniciusantunes26)
+- Renan Henrique - [GitHub](https://github.com/RenanHB2SL)
+- Samuel Nunes - [GitHub](https://github.com/SamuelFSNunes)
 - Rafael Mattos - [GitHub](https://github.com/RafaMattss)
