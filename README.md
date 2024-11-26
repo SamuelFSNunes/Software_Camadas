@@ -102,6 +102,15 @@ git clone https://github.com/SamuelFSNunes/Software_Camadas.git
 docker compose up --build
 ```
 
+## Setup
+
+- Access MinIO through the link (http://localhost:9001).  
+- Log in using the following credentials:  
+  - **Username**: `minioadmin`  
+  - **Password**: `minioadmin`  
+- Go to the **Bucket** tab and click on `Create Bucket`.  
+- In the **Bucket Name** field, type `warehouse` and select `Create Bucket`.  
+
 ## Configuration
 
 After installation, the environment will be automatically configured. You can access the following services:
