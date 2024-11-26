@@ -96,13 +96,7 @@ Follow the steps below to install the project:
 git clone https://github.com/Estagio-ADS-1-2024/bigdata-docker.git
 ```
 
-2. Navigate to the project directory.
-
-```bash
-cd bigdata-docker
-```
-
-3. Run the Docker initialization command.
+2. Run the Docker initialization command.
 
 ```bash
 docker compose up --build
