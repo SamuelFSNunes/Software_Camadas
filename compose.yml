@@ -1,0 +1,214 @@
+version: "3"  # Versão do Docker Compose
+
+services:  # Definição dos serviços
+
+  livy-spark:  # Serviço do Livy com Spark
+    build:  # Configuração para construir a imagem
+      context: code/livy  # Diretório de contexto para construção da imagem
+    ports:  # Mapeamento de portas
+      - "18080:18080"  # Mapeamento da porta 18080 do container para a porta 18080 do host
+      # - "4040:4040"    # Mapeamento da porta 4040 do container para a porta 4040 do host
+      - "8998:8998"    # Mapeamento da porta 8998 do container para a porta 8998 do host
+    volumes:  # Mapeamento de volumes
+      - ./volume/livy/conf:/opt/livy/conf  # Mapeamento do diretório de configuração do Livy
+      - ./volume/spark/conf:/opt/spark/conf  # Mapeamento do diretório de configuração do Spark
+    stdin_open: true  # Mantém o stdin aberto
+    tty: true         # Atribui um terminal pseudo-TTY
+    hostname: livy    # Define o hostname do container como 'livy'
+    networks:         # Define a rede a ser utilizada
+      - default-network
+
+  zeppelin:  # Serviço do Zeppelin
+    build:  # Configuração para construir a imagem
+      context: code/zeppelin  # Diretório de contexto para construção da imagem
+    ports:  # Mapeamento de portas
+      - "8080:8080"  # Mapeamento da porta 8080 do container para a porta 8080 do host
+    depends_on:  # Dependências
+      - livy-spark  # Dependência do serviço Livy-Spark
+    environment:  # Variáveis de ambiente
+      - ZEPPELIN_ADDR=0.0.0.0  # Define o endereço do Zeppelin como todos os IPs disponíveis
+    volumes:  # Mapeamento de volumes
+      - ./volume/zeppelin/notebook:/zeppelin/notebook  # Mapeamento do diretório de notebooks do Zeppelin
+      - ./volume/zeppelin/conf/interpreter.json:/zeppelin/conf/interpreter.json
+    networks:  # Define a rede a ser utilizada
+      - default-network
+      
+  minio:  # Serviço do MinIO
+    image: docker.io/minio/minio:RELEASE.2024-01-01T16-36-33Z  # Imagem Docker do MinIO com uma versão específica
+    ports:  # Mapeamento de portas
+      - "9000:9000"  # Mapeamento da porta 9000 do container para a porta 9000 do host
+      - "9001:9001"  # Mapeamento da porta 9001 do container para a porta 9001 do host
+    command: server /data --console-address ":9001"  # Comando a ser executado quando o container iniciar
+    volumes:  # Mapeamento de volumes
+      - ./volume/minio/data:/data  # Mapeamento do diretório de dados do Minio
+    networks:  # Define a rede a ser utilizada
+      - default-network
+
+  postgres:  # Serviço do PostgreSQL
+    hostname: postgres  # Define o hostname do container como 'postgres'
+    container_name: postgres  # Nome do container para o serviço PostgreSQL
+    image: postgres:11-alpine  # Imagem Docker do PostgreSQL
+    ports:  # Mapeamento de portas
+      - 5432:5432  # Mapeamento da porta 5432 do container para a porta 5432 do host
+    environment:  # Variáveis de ambiente
+      POSTGRES_USER: admin  # Nome de usuário do PostgreSQL
+      POSTGRES_PASSWORD: admin  # Senha do PostgreSQL
+      POSTGRES_DB: metastore_db  # Nome do banco de dados
+    volumes:
+      - ./volume/postgres/data:/var/lib/postgresql/data/
+    healthcheck:  # Verificação de saúde
+      test: ["CMD-SHELL", "pg_isready -U admin -d metastore_db"]  # Comando para verificar a saúde do PostgreSQL
+      interval: 1s  # Intervalo entre as verificações de saúde
+      timeout: 10s  # Tempo limite para cada verificação de saúde
+      retries: 10  # Número de tentativas de verificação de saúde
+    networks:  # Define a rede a ser utilizada
+      - default-network
+
+  metastore:  # Serviço de Metastore
+    build:  # Configuração para construir a imagem
+      context: code/hive  # Diretório de contexto para construção da imagem
+    hostname: metastore  # Define o hostname do container como 'metastore'
+    container_name: metastore  # Nome do container para o serviço Metastore
+    environment:  # Variáveis de ambiente
+      SERVICE_NAME: metastore  # Nome do serviço
+      DB_DRIVER: postgres  # Driver do banco de dados
+    restart: always
+    ports:  # Mapeamento de portas
+      - "9083:9083"  # Mapeamento da porta 9083 do container para a porta 9083 do host
+    volumes:  # Mapeamento de volumes
+      - ./volume/hive/conf/hive-site.xml:/opt/hive/conf/hive-site.xml
+    networks:  # Define a rede a ser utilizada
+      - default-network
+
+  hiveserver2:  # Serviço do Hive
+    build:  # Configuração para construir a imagem
+      context: code/hive  # Diretório de contexto para construção da imagem
+    container_name: hiveserver2  # Nome do container para o serviço HiveServer2
+    hostname: hiveserver2
+    depends_on:  # Dependências
+      - metastore  # Dependência do serviço Metastore
+    environment:  # Variáveis de ambiente
+      SERVICE_NAME: 'hiveserver2'  # Nome do serviço
+      SERVICE_OPTS: '-Xmx1G -Dhive.metastore.uris=thrift://metastore:9083'  # Opções de configuração
+      AWS_ACCESS_KEY_ID: minioadmin  # ID de acesso do AWS
+      AWS_SECRET_ACCESS_KEY: minioadmin  # Chave de acesso secreta do AWS
+      IS_RESUME: 'true'  # Opção de retomada
+    ports:  # Mapeamento de portas
+      - "10000:10000"  # Mapeamento da porta 10000 do container para a porta 10000 do host
+      - "10002:10002"  # Mapeamento da porta 10000 do container para a porta 10002 do host
+    volumes:  # Mapeamento de volumes
+      - ./volume/hive/conf/hive-site.xml:/opt/hive/conf/hive-site.xml
+      - ./volume/hadoop/conf/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+    networks:  # Define a rede a ser utilizada
+      - default-network
+    
+  redis:
+    image: redis:latest
+    expose:
+      - 6379
+    networks:  # Define a rede a ser utilizada
+      - default-network
+
+  airflow-webserver:
+    build:  # Configuração para construir a imagem
+      context: code/airflow  # Diretório de contexto para construção da imagem
+    restart: always
+    command: webserver
+    environment:
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+      AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+      _AIRFLOW_DB_MIGRATE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+      _PIP_ADDITIONAL_REQUIREMENTS: ''
+    user: "0:0"
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./volume/airflow/dags:/opt/airflow/dags
+      - ./volume/airflow/logs:/opt/airflow/logs
+      - ./volume/airflow/config:/opt/airflow/config
+      - ./volume/airflow/plugins:/opt/airflow/plugins
+    networks:  # Define a rede a ser utilizada
+      - default-network
+  
+  airflow-scheduler:
+    build:  # Configuração para construir a imagem
+      context: code/airflow  # Diretório de contexto para construção da imagem
+    restart: always
+    command: scheduler
+    environment:
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+      AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    volumes:
+      - ./volume/airflow/dags:/opt/airflow/dags
+      - ./volume/airflow/logs:/opt/airflow/logs
+      - ./volume/airflow/config:/opt/airflow/config
+      - ./volume/airflow/plugins:/opt/airflow/plugins
+    networks:  # Define a rede a ser utilizada
+      - default-network
+
+  airflow-triggerer:
+    build:  # Configuração para construir a imagem
+      context: code/airflow  # Diretório de contexto para construção da imagem
+    restart: always
+    command: triggerer
+    environment:
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+      AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    volumes:
+      - ./volume/airflow/dags:/opt/airflow/dags
+      - ./volume/airflow/logs:/opt/airflow/logs
+      - ./volume/airflow/config:/opt/airflow/config
+      - ./volume/airflow/plugins:/opt/airflow/plugins
+    networks:  # Define a rede a ser utilizada
+      - default-network
+    
+  airflow-worker:
+    build:  # Configuração para construir a imagem
+      context: code/airflow  # Diretório de contexto para construção da imagem
+    command: celery worker
+    environment:
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://admin:admin@postgres/metastore_db
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+      AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+      DUMB_INIT_SETSID: "0"
+    volumes:
+      - ./volume/airflow/dags:/opt/airflow/dags
+      - ./volume/airflow/logs:/opt/airflow/logs
+      - ./volume/airflow/config:/opt/airflow/config
+      - ./volume/airflow/plugins:/opt/airflow/plugins
+    networks:  # Define a rede a ser utilizada
+      - default-network
+
+networks:  # Definição das redes
+  default-network:  # Rede chamada 'default-network'
+    name: bigdata-docker  # Nome da rede

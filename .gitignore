@@ -1,0 +1,6 @@
+volume/minio/data/
+volume/postgres
+volume/airflow/logs
+volume/airflow/config
+volume/airflow/plugins
+volume/airflow/dags/__pycache__

@@ -1,0 +1,977 @@
+{
+  "paragraphs": [
+    {
+      "text": "%livy.conf\nzeppelin.livy.url http://livy:8998",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-18 18:37:18.040",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117574_-509059535",
+      "id": "20240305-181917_1933628601",
+      "dateCreated": "2024-04-12 17:15:17.574",
+      "dateStarted": "2024-04-18 18:37:18.115",
+      "dateFinished": "2024-04-18 18:37:18.117",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy\n\nval inputPath: String \u003d s\"s3a://raw/datasets/titanic.csv\"\nval outputPath: String \u003d s\"s3a://raw/datasets/titanic.parquet\"\n\nval df \u003d spark.read.option(\"header\", \"true\").format(\"minioSelectCSV\").csv(inputPath)\n\ndf.printSchema()\ndf.show(false)\n\ndf.write.mode(\"overwrite\").parquet(outputPath)",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-18 18:41:31.343",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.zeppelin.livy.LivyException: Session 0 is finished, appId: null, log:\nstdout: \n24/04/18 18:41:46 INFO SparkContext: Added file file:///opt/spark/python/lib/pyspark.zip at file:///opt/spark/python/lib/pyspark.zip with timestamp 1713465705083\n24/04/18 18:41:46 INFO Utils: Copying /opt/spark/python/lib/pyspark.zip to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/pyspark.zip\n24/04/18 18:41:46 INFO SparkContext: Added file file:///opt/spark/python/lib/py4j-0.10.9.5-src.zip at file:///opt/spark/python/lib/py4j-0.10.9.5-src.zip with timestamp 1713465705083\n24/04/18 18:41:46 INFO Utils: Copying /opt/spark/python/lib/py4j-0.10.9.5-src.zip to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/py4j-0.10.9.5-src.zip\n24/04/18 18:41:46 INFO Executor: Starting executor ID driver on host livy\n24/04/18 18:41:46 INFO Executor: Starting executor with user classpath (userClassPathFirst \u003d false): \u0027\u0027\n24/04/18 18:41:46 INFO Executor: Using REPL class URI: spark://livy:40083/classes\n24/04/18 18:41:46 INFO Executor: Fetching file:///opt/spark/python/lib/py4j-0.10.9.5-src.zip with timestamp 1713465705083\n24/04/18 18:41:46 INFO Utils: /opt/spark/python/lib/py4j-0.10.9.5-src.zip has been previously copied to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/py4j-0.10.9.5-src.zip\n24/04/18 18:41:46 INFO Executor: Fetching file:///opt/spark/python/lib/pyspark.zip with timestamp 1713465705083\n24/04/18 18:41:46 INFO Utils: /opt/spark/python/lib/pyspark.zip has been previously copied to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/pyspark.zip\n24/04/18 18:41:46 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-classes-epoll-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:46 INFO TransportClientFactory: Successfully created connection to livy/192.168.224.4:40083 after 23 ms (0 ms spent in bootstraps)\n24/04/18 18:41:46 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-classes-epoll-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp16795569550388210460.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-classes-epoll-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-socks-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-socks-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp4787567177829204582.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-socks-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/livy-repl_2.12-0.8.0-incubating.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/livy-repl_2.12-0.8.0-incubating.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp12911233599907934682.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/livy-repl_2.12-0.8.0-incubating.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-memcache-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-memcache-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp8149906652540421339.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-memcache-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-common-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-common-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp2369744551200339396.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-common-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/objenesis-2.5.1.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/objenesis-2.5.1.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp8712418401691660958.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/objenesis-2.5.1.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-resolver-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-resolver-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp16867938971650765161.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-resolver-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp8404063562887160770.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-resolver-dns-native-macos-4.1.86.Final-osx-aarch_64.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-resolver-dns-native-macos-4.1.86.Final-osx-aarch_64.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp4488275333989173147.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-resolver-dns-native-macos-4.1.86.Final-osx-aarch_64.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-buffer-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-buffer-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp10006494199106366104.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-buffer-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-http-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-http-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp18276534613000708033.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-http-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-handler-ssl-ocsp-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-handler-ssl-ocsp-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp1037060264356102781.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-handler-ssl-ocsp-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-native-kqueue-4.1.86.Final-osx-x86_64.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-native-kqueue-4.1.86.Final-osx-x86_64.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp8714097322853964213.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-native-kqueue-4.1.86.Final-osx-x86_64.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-native-epoll-4.1.86.Final-linux-aarch_64.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-native-epoll-4.1.86.Final-linux-aarch_64.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp1496304496791001561.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-native-epoll-4.1.86.Final-linux-aarch_64.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-xml-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-xml-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp16242224679238112040.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-xml-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/livy-rsc-0.8.0-incubating.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/livy-rsc-0.8.0-incubating.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp8824882605526677709.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/livy-rsc-0.8.0-incubating.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-handler-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-handler-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp17939450905226224346.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-handler-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/commons-codec-1.9.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/commons-codec-1.9.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp15430758454160964260.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/commons-codec-1.9.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-native-unix-common-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-native-unix-common-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp14059087285828934120.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-native-unix-common-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-native-kqueue-4.1.86.Final-osx-aarch_64.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-native-kqueue-4.1.86.Final-osx-aarch_64.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp10473066438301028333.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-native-kqueue-4.1.86.Final-osx-aarch_64.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp6323881662726422106.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/livy-api-0.8.0-incubating.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/livy-api-0.8.0-incubating.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp5076715247127046109.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/livy-api-0.8.0-incubating.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-all-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-all-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp11689207298742898444.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-all-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-handler-proxy-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-handler-proxy-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp12439941180119544236.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-handler-proxy-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-classes-kqueue-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-classes-kqueue-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp848438345631425536.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-classes-kqueue-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/livy-core_2.12-0.8.0-incubating.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/livy-core_2.12-0.8.0-incubating.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp16779565849475931161.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/livy-core_2.12-0.8.0-incubating.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-mqtt-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-mqtt-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp17657595799117243035.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-mqtt-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-dns-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-dns-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp9319541236263918212.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-dns-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/kryo-shaded-4.0.2.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/kryo-shaded-4.0.2.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp8639793642952286318.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/kryo-shaded-4.0.2.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/minlog-1.3.0.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/minlog-1.3.0.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp464175497323218877.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/minlog-1.3.0.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-stomp-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-stomp-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp7780853495186390850.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-stomp-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-native-epoll-4.1.86.Final-linux-x86_64.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-native-epoll-4.1.86.Final-linux-x86_64.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp9513330213576772430.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-native-epoll-4.1.86.Final-linux-x86_64.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-smtp-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-smtp-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp17461372998553714680.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-smtp-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-sctp-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-sctp-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp6876892594236184238.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-sctp-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-resolver-dns-native-macos-4.1.86.Final-osx-x86_64.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-resolver-dns-native-macos-4.1.86.Final-osx-x86_64.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp14584294785518634189.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-resolver-dns-native-macos-4.1.86.Final-osx-x86_64.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-redis-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-redis-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp16683569895453788331.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-redis-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-udt-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-udt-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp6238970350621111182.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-udt-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-haproxy-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-haproxy-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp13581627797664480712.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-haproxy-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-codec-http2-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-codec-http2-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp8869137144518289234.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-codec-http2-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-resolver-dns-classes-macos-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-resolver-dns-classes-macos-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp1622303798838022444.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-resolver-dns-classes-macos-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-resolver-dns-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-resolver-dns-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp14691832294833319414.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-resolver-dns-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Executor: Fetching spark://livy:40083/jars/netty-transport-rxtx-4.1.86.Final.jar with timestamp 1713465705083\n24/04/18 18:41:47 INFO Utils: Fetching spark://livy:40083/jars/netty-transport-rxtx-4.1.86.Final.jar to /tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/fetchFileTemp5548254928003640593.tmp\n24/04/18 18:41:47 INFO Executor: Adding file:/tmp/spark-ad8f84f1-2dff-481b-9310-a9610d5da889/userFiles-30e927f4-a902-4f4d-b5d8-08cf1322c6bd/netty-transport-rxtx-4.1.86.Final.jar to class loader\n24/04/18 18:41:47 INFO Utils: Successfully started service \u0027org.apache.spark.network.netty.NettyBlockTransferService\u0027 on port 33925.\n24/04/18 18:41:47 INFO NettyBlockTransferService: Server created on livy:33925\n24/04/18 18:41:47 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy\n24/04/18 18:41:47 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, livy, 33925, None)\n24/04/18 18:41:47 INFO BlockManagerMasterEndpoint: Registering block manager livy:33925 with 434.4 MiB RAM, BlockManagerId(driver, livy, 33925, None)\n24/04/18 18:41:47 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, livy, 33925, None)\n24/04/18 18:41:47 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, livy, 33925, None)\n24/04/18 18:41:48 ERROR SparkContext: Error initializing SparkContext.\njava.io.FileNotFoundException: File file:/tmp/spark-events does not exist\n\tat org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)\n\tat org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)\n\tat org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)\n\tat org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:462)\n\tat org.apache.spark.deploy.history.EventLogFileWriter.requireLogBaseDirAsDirectory(EventLogFileWriters.scala:77)\n\tat org.apache.spark.deploy.history.SingleEventLogFileWriter.start(EventLogFileWriters.scala:221)\n\tat org.apache.spark.scheduler.EventLoggingListener.start(EventLoggingListener.scala:83)\n\tat org.apache.spark.SparkContext.\u003cinit\u003e(SparkContext.scala:622)\n\tat org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2714)\n\tat org.apache.spark.SparkContext.getOrCreate(SparkContext.scala)\n\tat org.apache.livy.rsc.driver.SparkEntries.sc(SparkEntries.java:52)\n\tat org.apache.livy.rsc.driver.SparkEntries.sparkSession(SparkEntries.java:66)\n\tat org.apache.livy.repl.AbstractSparkInterpreter.postStart(AbstractSparkInterpreter.scala:71)\n\tat org.apache.livy.repl.SparkInterpreter.$anonfun$start$1(SparkInterpreter.scala:85)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.livy.repl.AbstractSparkInterpreter.restoreContextClassLoader(AbstractSparkInterpreter.scala:342)\n\tat org.apache.livy.repl.SparkInterpreter.start(SparkInterpreter.scala:60)\n\tat org.apache.livy.repl.Session.$anonfun$start$1(Session.scala:128)\n\tat scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)\n\tat scala.util.Success.$anonfun$map$1(Try.scala:255)\n\tat scala.util.Success.map(Try.scala:213)\n\tat scala.concurrent.Future.$anonfun$map$1(Future.scala:292)\n\tat scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)\n\tat scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)\n\tat java.base/java.lang.Thread.run(Unknown Source)\n24/04/18 18:41:48 INFO SparkUI: Stopped Spark web UI at http://livy:4040\n24/04/18 18:41:48 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!\n24/04/18 18:41:48 INFO MemoryStore: MemoryStore cleared\n24/04/18 18:41:48 INFO BlockManager: BlockManager stopped\n24/04/18 18:41:48 INFO BlockManagerMaster: BlockManagerMaster stopped\n24/04/18 18:41:48 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!\n24/04/18 18:41:48 INFO SparkContext: Successfully stopped SparkContext\n24/04/18 18:41:48 WARN RSCDriver: Error during cancel job.\njava.lang.NullPointerException\n\tat org.apache.livy.rsc.driver.JobWrapper.cancel(JobWrapper.java:90)\n\tat org.apache.livy.rsc.driver.RSCDriver.shutdown(RSCDriver.java:128)\n\tat org.apache.livy.rsc.driver.RSCDriver.run(RSCDriver.java:361)\n\tat org.apache.livy.rsc.driver.RSCDriverBootstrapper.main(RSCDriverBootstrapper.java:93)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)\n\tat java.base/java.lang.reflect.Method.invoke(Unknown Source)\n\tat org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)\n\tat org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:984)\n\tat org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:191)\n\tat org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:214)\n\tat org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)\n\tat org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1072)\n\tat org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1081)\n\tat org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)\n\nstderr: \nException in thread \"main\" java.io.FileNotFoundException: File file:/tmp/spark-events does not exist\n\tat org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)\n\tat org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)\n\tat org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)\n\tat org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:462)\n\tat org.apache.spark.deploy.history.EventLogFileWriter.requireLogBaseDirAsDirectory(EventLogFileWriters.scala:77)\n\tat org.apache.spark.deploy.history.SingleEventLogFileWriter.start(EventLogFileWriters.scala:221)\n\tat org.apache.spark.scheduler.EventLoggingListener.start(EventLoggingListener.scala:83)\n\tat org.apache.spark.SparkContext.\u003cinit\u003e(SparkContext.scala:622)\n\tat org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2714)\n\tat org.apache.spark.SparkContext.getOrCreate(SparkContext.scala)\n\tat org.apache.livy.rsc.driver.SparkEntries.sc(SparkEntries.java:52)\n\tat org.apache.livy.rsc.driver.SparkEntries.sparkSession(SparkEntries.java:66)\n\tat org.apache.livy.repl.AbstractSparkInterpreter.postStart(AbstractSparkInterpreter.scala:71)\n\tat org.apache.livy.repl.SparkInterpreter.$anonfun$start$1(SparkInterpreter.scala:85)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.livy.repl.AbstractSparkInterpreter.restoreContextClassLoader(AbstractSparkInterpreter.scala:342)\n\tat org.apache.livy.repl.SparkInterpreter.start(SparkInterpreter.scala:60)\n\tat org.apache.livy.repl.Session.$anonfun$start$1(Session.scala:128)\n\tat scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)\n\tat scala.util.Success.$anonfun$map$1(Try.scala:255)\n\tat scala.util.Success.map(Try.scala:213)\n\tat scala.concurrent.Future.$anonfun$map$1(Future.scala:292)\n\tat scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)\n\tat scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)\n\tat java.base/java.lang.Thread.run(Unknown Source)\n\tat org.apache.zeppelin.livy.BaseLivyInterpreter.createSession(BaseLivyInterpreter.java:354)\n\tat org.apache.zeppelin.livy.BaseLivyInterpreter.initLivySession(BaseLivyInterpreter.java:209)\n\tat org.apache.zeppelin.livy.LivySharedInterpreter.open(LivySharedInterpreter.java:59)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)\n\tat org.apache.zeppelin.livy.BaseLivyInterpreter.getLivySharedInterpreter(BaseLivyInterpreter.java:190)\n\tat org.apache.zeppelin.livy.BaseLivyInterpreter.open(BaseLivyInterpreter.java:163)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:616)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:188)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:140)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117578_-289174073",
+      "id": "20240305-161026_1052798559",
+      "dateCreated": "2024-04-12 17:15:17.579",
+      "dateStarted": "2024-04-18 18:41:31.396",
+      "dateFinished": "2024-04-18 18:41:48.997",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\nspark.sql(\"SHOW TABLES\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-18 19:15:46.306",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+---------+-----------+\n|namespace|tableName|isTemporary|\n+---------+---------+-----------+\n+---------+---------+-----------+"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117579_1912681958",
+      "id": "20240402-193046_1129958701",
+      "dateCreated": "2024-04-12 17:15:17.579",
+      "dateStarted": "2024-04-18 19:15:47.650",
+      "dateFinished": "2024-04-18 19:16:05.381",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Versões do Spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.580",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eVersões do Spark\u003c/h1\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117580_1228790375",
+      "id": "20240411-171759_1810628761",
+      "dateCreated": "2024-04-12 17:15:17.580",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\r\nprint(spark.version)",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-18 19:49:53.951",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "3.3.3"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117581_1640182791",
+      "id": "20240411-171759_1856733366",
+      "dateCreated": "2024-04-12 17:15:17.581",
+      "dateStarted": "2024-04-18 19:49:54.144",
+      "dateFinished": "2024-04-18 19:50:23.424",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\r\nimport sys\r\nprint(sys.version)",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.582",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "3.6.15 (default, Apr 25 2022, 01:55:53) \n[GCC 9.4.0]"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117581_-535388667",
+      "id": "20240411-171758_1242632706",
+      "dateCreated": "2024-04-12 17:15:17.581",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy\r\nutil.Properties.versionNumberString",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.583",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: String \u003d 2.12.15"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117582_427982731",
+      "id": "20240411-171758_788985774",
+      "dateCreated": "2024-04-12 17:15:17.582",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.sparkr\nversion[[\u0027version.string\u0027]]\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.583",
+      "config": {
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/r",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to start interpreter\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117583_-1105612180",
+      "id": "20240411-171758_1432735428",
+      "dateCreated": "2024-04-12 17:15:17.583",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.sql\r\nSELECT version()",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.584",
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "version()": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "version()\n3.3.3 8c2b3319c67..."
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117584_-1833189406",
+      "id": "20240411-171757_1492652244",
+      "dateCreated": "2024-04-12 17:15:17.584",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Processamento de TESTE\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.585",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eProcessamento de TESTE\u003c/h1\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117584_1482841267",
+      "id": "20240402-201134_6025383",
+      "dateCreated": "2024-04-12 17:15:17.584",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\r\n\r\n# -*- coding: utf-8 -*-\r\n\"\"\"\r\nCodigo para testar o PySpark (API em Python do Spark)\r\n\"\"\"\r\n\r\n# Importar as funcoes do PySpark\r\nfrom pyspark.sql import SparkSession\r\nfrom pyspark.sql import functions as F\r\n\r\n# Criar uma SparkSession, o ponto de entrada para o PySpark\r\nspark \u003d SparkSession.builder.getOrCreate()\r\n\r\nseed \u003d 42\r\n\r\n# Dataframe do PySpark com dados do cliente\r\n# 100 linhas aleatorias representando o ID do cliente e a sua idade\r\n# Colunas:\r\n# * id_cliente\r\n# * idade\r\ndf_cliente \u003d (\r\n    spark.range(100)\r\n    .select(\r\n        F.col(\"id\").alias(\"id_cliente\"),\r\n        (F.randn(seed\u003dseed) * 3 + 35).cast(\"int\").alias(\"idade\")\r\n    )\r\n)\r\n\r\n# Dataframe do PySpark com dados de compras do cliente\r\n# 100.000 linhas aleatorias relacionando o ID do cliente com uma compra\r\n# Colunas:\r\n# * id_cliente\r\n# * valor\r\ndf_compra \u003d (\r\n    spark.range(100000)\r\n    .select(\r\n        (F.rand(seed\u003dseed) * 100).cast(\"int\").alias(\"id_cliente\"),\r\n        (F.abs((F.randn(seed\u003dseed) * 50) + (F.rand(seed\u003dseed) * 1000))).cast(\"decimal(16,2)\").alias(\"valor\")\r\n    )\r\n)\r\n\r\n# Dataframe do PySpark\r\n# Realiza a juncao dos dataframes de cliente com compras\r\n# Em seguida, realiza um agrupamento para calcular algumas metricas de compras por idade\r\n# Colunas:\r\n# * idade\r\n# * qtd\r\n# * min_valor\r\n# * avg_valor\r\n# * max_valor\r\ndf_compra_idade \u003d (\r\n    df_cliente.alias(\"a\")\r\n    .join(\r\n        other\u003ddf_compra.alias(\"b\"),\r\n        how\u003d\"left\",\r\n        on\u003d[F.col(\"a.id_cliente\") \u003d\u003d F.col(\"b.id_cliente\")]\r\n    )\r\n    .select(\r\n        \"a.id_cliente\",\r\n        \"a.idade\",\r\n        \"b.valor\",\r\n    )\r\n    .groupBy(\"idade\").agg(\r\n        F.count(\"*\").alias(\"qtd\"),\r\n        F.min(\"valor\").alias(\"min_valor\"),\r\n        F.avg(\"valor\").alias(\"avg_valor\"),\r\n        F.max(\"valor\").alias(\"max_valor\"),\r\n    )\r\n    .orderBy(\"idade\")\r\n)\r\n\r\n# Mostra os dados do dataframe final\r\ndf_compra_idade.show(250, truncate\u003dFalse)\r\n\r\ndf_compra_idade.createOrReplaceTempView(\"view_teste\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.586",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----+-----+---------+----------+---------+\n|idade|qtd  |min_valor|avg_valor |max_valor|\n+-----+-----+---------+----------+---------+\n|27   |989  |769.44   |955.013862|1120.02  |\n|28   |994  |812.78   |995.544859|1154.00  |\n|29   |3023 |154.72   |604.787201|982.26   |\n|30   |929  |526.04   |694.623843|825.73   |\n|31   |4022 |102.15   |612.688874|918.79   |\n|32   |11018|40.52    |652.127909|1065.04  |\n|33   |15125|0.07     |453.497642|1090.83  |\n|34   |11777|0.11     |546.551656|1038.27  |\n|35   |15051|0.00     |545.041006|1156.45  |\n|36   |7974 |59.33    |397.996415|1097.65  |\n|37   |14066|0.21     |428.618225|1103.95  |\n|38   |4003 |0.07     |409.369053|1130.07  |\n|39   |4020 |85.79    |521.637861|885.33   |\n|40   |2976 |0.27     |207.070974|609.06   |\n|41   |1985 |0.21     |271.585441|648.75   |\n|42   |2048 |0.03     |208.381094|548.77   |\n+-----+-----+---------+----------+---------+"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117585_-2077604097",
+      "id": "20240411-172005_544945066",
+      "dateCreated": "2024-04-12 17:15:17.585",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\r\ndf \u003d spark.table(\"view_teste\")\r\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.586",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----+-----+---------+----------+---------+\n|idade|  qtd|min_valor| avg_valor|max_valor|\n+-----+-----+---------+----------+---------+\n|   27|  989|   769.44|955.013862|  1120.02|\n|   28|  994|   812.78|995.544859|  1154.00|\n|   29| 3023|   154.72|604.787201|   982.26|\n|   30|  929|   526.04|694.623843|   825.73|\n|   31| 4022|   102.15|612.688874|   918.79|\n|   32|11018|    40.52|652.127909|  1065.04|\n|   33|15125|     0.07|453.497642|  1090.83|\n|   34|11777|     0.11|546.551656|  1038.27|\n|   35|15051|     0.00|545.041006|  1156.45|\n|   36| 7974|    59.33|397.996415|  1097.65|\n|   37|14066|     0.21|428.618225|  1103.95|\n|   38| 4003|     0.07|409.369053|  1130.07|\n|   39| 4020|    85.79|521.637861|   885.33|\n|   40| 2976|     0.27|207.070974|   609.06|\n|   41| 1985|     0.21|271.585441|   648.75|\n|   42| 2048|     0.03|208.381094|   548.77|\n+-----+-----+---------+----------+---------+"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117586_-1478958549",
+      "id": "20240411-172004_9716071",
+      "dateCreated": "2024-04-12 17:15:17.586",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy\r\nvar df \u003d spark.table(\"view_teste\")\r\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.587",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "df: org.apache.spark.sql.DataFrame \u003d [idade: int, qtd: bigint ... 3 more fields]\n+-----+-----+---------+----------+---------+\n|idade|  qtd|min_valor| avg_valor|max_valor|\n+-----+-----+---------+----------+---------+\n|   27|  989|   769.44|955.013862|  1120.02|\n|   28|  994|   812.78|995.544859|  1154.00|\n|   29| 3023|   154.72|604.787201|   982.26|\n|   30|  929|   526.04|694.623843|   825.73|\n|   31| 4022|   102.15|612.688874|   918.79|\n|   32|11018|    40.52|652.127909|  1065.04|\n|   33|15125|     0.07|453.497642|  1090.83|\n|   34|11777|     0.11|546.551656|  1038.27|\n|   35|15051|     0.00|545.041006|  1156.45|\n|   36| 7974|    59.33|397.996415|  1097.65|\n|   37|14066|     0.21|428.618225|  1103.95|\n|   38| 4003|     0.07|409.369053|  1130.07|\n|   39| 4020|    85.79|521.637861|   885.33|\n|   40| 2976|     0.27|207.070974|   609.06|\n|   41| 1985|     0.21|271.585441|   648.75|\n|   42| 2048|     0.03|208.381094|   548.77|\n+-----+-----+---------+----------+---------+"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117586_646222789",
+      "id": "20240411-172805_1119563985",
+      "dateCreated": "2024-04-12 17:15:17.586",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.sparkr\r\ndf \u003c- SparkR::tableToDF(\"view_teste\")\r\nSparkR::showDF(df)",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.587",
+      "config": {
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/r",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to start interpreter\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117587_-411799594",
+      "id": "20240411-172804_1474214627",
+      "dateCreated": "2024-04-12 17:15:17.587",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.sql\r\nSELECT\r\n    *\r\nFROM view_teste",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.587",
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "idade": "string",
+                      "qtd": "string",
+                      "min_valor": "string",
+                      "avg_valor": "string",
+                      "max_valor": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "idade\tqtd\tmin_valor\tavg_valor\tmax_valor\n27\t989\t769.44\t955.013862\t1120.02\n28\t994\t812.78\t995.544859\t1154.00\n29\t3023\t154.72\t604.787201\t982.26\n30\t929\t526.04\t694.623843\t825.73\n31\t4022\t102.15\t612.688874\t918.79\n32\t11018\t40.52\t652.127909\t1065.04\n33\t15125\t0.07\t453.497642\t1090.83\n34\t11777\t0.11\t546.551656\t1038.27\n35\t15051\t0.00\t545.041006\t1156.45\n36\t7974\t59.33\t397.996415\t1097.65\n37\t14066\t0.21\t428.618225\t1103.95\n38\t4003\t0.07\t409.369053\t1130.07\n39\t4020\t85.79\t521.637861\t885.33\n40\t2976\t0.27\t207.070974\t609.06\n41\t1985\t0.21\t271.585441\t648.75\n42\t2048\t0.03\t208.381094\t548.77"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: null\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"null\"\u003enull\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117587_949592304",
+      "id": "20240411-172803_1364039359",
+      "dateCreated": "2024-04-12 17:15:17.587",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hive\nCREATE TABLE teste_tipos (\n    col_int INT,\n    col_bigint BIGINT,\n    col_float FLOAT,\n    col_double DOUBLE,\n    col_decimal DECIMAL(10,2),\n    col_string STRING,\n    col_boolean BOOLEAN,\n    col_timestamp TIMESTAMP,\n    col_date DATE,\n    col_array ARRAY\u003cSTRING\u003e,\n    col_map MAP\u003cSTRING, INT\u003e,\n    col_struct STRUCT\u003cname:STRING, age:INT\u003e\n) location \u0027s3a://warehouse/hive\u0027",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-19 16:20:02.690",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": true,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "hive.a",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "hive.b",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "hive.c",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "a": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "a",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117587_1033891823",
+      "id": "20240411-172802_1719769574",
+      "dateCreated": "2024-04-12 17:15:17.587",
+      "dateStarted": "2024-04-19 16:20:02.806",
+      "dateFinished": "2024-04-19 16:20:12.003",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hive\nINSERT INTO teste_tipos VALUES\n(1, 1234567890, 3.14, 3.14159, 100.50, \u0027primeira linha\u0027, true, \u00272024-04-19 12:00:00\u0027, \u00272024-04-19\u0027, array(\u0027A\u0027, \u0027B\u0027, \u0027C\u0027), map(\u0027key1\u0027, 1, \u0027key2\u0027, 2), named_struct(\u0027name\u0027, \u0027John\u0027, \u0027age\u0027, 30)),\n(2, 9876543210, 2.718, 2.71828, 200.75, \u0027segunda linha\u0027, false, \u00272024-04-18 13:30:00\u0027, \u00272024-04-18\u0027, array(\u0027X\u0027, \u0027Y\u0027, \u0027Z\u0027), map(\u0027key3\u0027, 3, \u0027key4\u0027, 4), named_struct(\u0027name\u0027, \u0027Alice\u0027, \u0027age\u0027, 25)),\n(3, 1357924680, 1.618, 1.61803, 300.00, \u0027terceira linha\u0027, true, \u00272024-04-17 10:45:00\u0027, \u00272024-04-17\u0027, array(\u00271\u0027, \u00272\u0027, \u00273\u0027), map(\u0027key5\u0027, 5, \u0027key6\u0027, 6), named_struct(\u0027name\u0027, \u0027Bob\u0027, \u0027age\u0027, 35)),\n(4, 2468013579, 0.577, 0.57722, 400.25, \u0027quarta linha\u0027, false, \u00272024-04-16 09:15:00\u0027, \u00272024-04-16\u0027, array(\u0027apple\u0027, \u0027banana\u0027, \u0027orange\u0027), map(\u0027key7\u0027, 7, \u0027key8\u0027, 8), named_struct(\u0027name\u0027, \u0027Eva\u0027, \u0027age\u0027, 28)),\n(5, 9876543210, 0.123, 0.12345, 500.50, \u0027quinta linha\u0027, true, \u00272024-04-15 08:00:00\u0027, \u00272024-04-15\u0027, array(\u0027red\u0027, \u0027green\u0027, \u0027blue\u0027), map(\u0027key9\u0027, 9, \u0027key10\u0027, 10), named_struct(\u0027name\u0027, \u0027David\u0027, \u0027age\u0027, 40)),\n(6, 2468013579, 5.432, 5.43210, 600.75, \u0027sexta linha\u0027, false, \u00272024-04-14 14:20:00\u0027, \u00272024-04-14\u0027, array(\u0027dog\u0027, \u0027cat\u0027, \u0027bird\u0027), map(\u0027key11\u0027, 11, \u0027key12\u0027, 12), named_struct(\u0027name\u0027, \u0027Emma\u0027, \u0027age\u0027, 22)),\n(7, 1234567890, 9.876, 9.87654, 700.00, \u0027sétima linha\u0027, true, \u00272024-04-13 16:30:00\u0027, \u00272024-04-13\u0027, array(\u0027sun\u0027, \u0027moon\u0027, \u0027stars\u0027), map(\u0027key13\u0027, 13, \u0027key14\u0027, 14), named_struct(\u0027name\u0027, \u0027Frank\u0027, \u0027age\u0027, 33)),\n(8, 9876543210, 7.654, 7.65432, 800.25, \u0027oitava linha\u0027, false, \u00272024-04-12 11:00:00\u0027, \u00272024-04-12\u0027, array(\u0027Monday\u0027, \u0027Tuesday\u0027, \u0027Wednesday\u0027), map(\u0027key15\u0027, 15, \u0027key16\u0027, 16), named_struct(\u0027name\u0027, \u0027Grace\u0027, \u0027age\u0027, 29)),\n(9, 1357924680, 4.321, 4.32109, 900.50, \u0027nona linha\u0027, true, \u00272024-04-11 19:45:00\u0027, \u00272024-04-11\u0027, array(\u0027winter\u0027, \u0027spring\u0027, \u0027summer\u0027), map(\u0027key17\u0027, 17, \u0027key18\u0027, 18), named_struct(\u0027name\u0027, \u0027Henry\u0027, \u0027age\u0027, 37)),\n(10, 1234567890, 6.789, 6.78901, 1000.75, \u0027décima linha\u0027, false, \u00272024-04-10 07:15:00\u0027, \u00272024-04-10\u0027, array(\u0027coffee\u0027, \u0027tea\u0027, \u0027juice\u0027), map(\u0027key19\u0027, 19, \u0027key20\u0027, 20), named_struct(\u0027name\u0027, \u0027Ivy\u0027, \u0027age\u0027, 26))\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-19 16:22:48.455",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1713543759066_2018665433",
+      "id": "20240419-162239_943337862",
+      "dateCreated": "2024-04-19 16:22:39.066",
+      "dateStarted": "2024-04-19 16:22:48.530",
+      "dateFinished": "2024-04-19 16:22:57.009",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hive\n\nselect * from teste_tipos",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-19 16:23:00.134",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "teste_tipos.col_int": "string",
+                      "teste_tipos.col_bigint": "string",
+                      "teste_tipos.col_float": "string",
+                      "teste_tipos.col_double": "string",
+                      "teste_tipos.col_decimal": "string",
+                      "teste_tipos.col_string": "string",
+                      "teste_tipos.col_boolean": "string",
+                      "teste_tipos.col_timestamp": "string",
+                      "teste_tipos.col_date": "string",
+                      "teste_tipos.col_array": "string",
+                      "teste_tipos.col_map": "string",
+                      "teste_tipos.col_struct": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "teste_tipos.col_int\tteste_tipos.col_bigint\tteste_tipos.col_float\tteste_tipos.col_double\tteste_tipos.col_decimal\tteste_tipos.col_string\tteste_tipos.col_boolean\tteste_tipos.col_timestamp\tteste_tipos.col_date\tteste_tipos.col_array\tteste_tipos.col_map\tteste_tipos.col_struct\n1\t1234567890\t3.14\t3.14159\t100.50\tprimeira linha\ttrue\t2024-04-19 12:00:00.0\t2024-04-19\t[\"A\",\"B\",\"C\"]\t{\"key1\":1,\"key2\":2}\t{\"name\":\"John\",\"age\":30}\n2\t9876543210\t2.718\t2.71828\t200.75\tsegunda linha\tfalse\t2024-04-18 13:30:00.0\t2024-04-18\t[\"X\",\"Y\",\"Z\"]\t{\"key3\":3,\"key4\":4}\t{\"name\":\"Alice\",\"age\":25}\n3\t1357924680\t1.618\t1.61803\t300.00\tterceira linha\ttrue\t2024-04-17 10:45:00.0\t2024-04-17\t[\"1\",\"2\",\"3\"]\t{\"key5\":5,\"key6\":6}\t{\"name\":\"Bob\",\"age\":35}\n4\t2468013579\t0.577\t0.57722\t400.25\tquarta linha\tfalse\t2024-04-16 09:15:00.0\t2024-04-16\t[\"apple\",\"banana\",\"orange\"]\t{\"key7\":7,\"key8\":8}\t{\"name\":\"Eva\",\"age\":28}\n5\t9876543210\t0.123\t0.12345\t500.50\tquinta linha\ttrue\t2024-04-15 08:00:00.0\t2024-04-15\t[\"red\",\"green\",\"blue\"]\t{\"key9\":9,\"key10\":10}\t{\"name\":\"David\",\"age\":40}\n6\t2468013579\t5.432\t5.4321\t600.75\tsexta linha\tfalse\t2024-04-14 14:20:00.0\t2024-04-14\t[\"dog\",\"cat\",\"bird\"]\t{\"key11\":11,\"key12\":12}\t{\"name\":\"Emma\",\"age\":22}\n7\t1234567890\t9.876\t9.87654\t700.00\tsétima linha\ttrue\t2024-04-13 16:30:00.0\t2024-04-13\t[\"sun\",\"moon\",\"stars\"]\t{\"key13\":13,\"key14\":14}\t{\"name\":\"Frank\",\"age\":33}\n8\t9876543210\t7.654\t7.65432\t800.25\toitava linha\tfalse\t2024-04-12 11:00:00.0\t2024-04-12\t[\"Monday\",\"Tuesday\",\"Wednesday\"]\t{\"key15\":15,\"key16\":16}\t{\"name\":\"Grace\",\"age\":29}\n9\t1357924680\t4.321\t4.32109\t900.50\tnona linha\ttrue\t2024-04-11 19:45:00.0\t2024-04-11\t[\"winter\",\"spring\",\"summer\"]\t{\"key17\":17,\"key18\":18}\t{\"name\":\"Henry\",\"age\":37}\n10\t1234567890\t6.789\t6.78901\t1000.75\tdécima linha\tfalse\t2024-04-10 07:15:00.0\t2024-04-10\t[\"coffee\",\"tea\",\"juice\"]\t{\"key19\":19,\"key20\":20}\t{\"name\":\"Ivy\",\"age\":26}\nnull\t1\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t2\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t3\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t1\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t2\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t3\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t1\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t2\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t3\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t1\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t2\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\nnull\t3\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117588_-1796264958",
+      "id": "20240411-172801_959736890",
+      "dateCreated": "2024-04-12 17:15:17.588",
+      "dateStarted": "2024-04-19 16:23:00.216",
+      "dateFinished": "2024-04-19 16:23:01.296",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.589",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117588_1806746583",
+      "id": "20240411-172800_378702156",
+      "dateCreated": "2024-04-12 17:15:17.588",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-04-12 17:15:17.589",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1712942117589_-2056086089",
+      "id": "20240411-172758_1999074086",
+      "dateCreated": "2024-04-12 17:15:17.589",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "titanic",
+  "id": "2JU8V6QDF",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "hive:shared_process": [],
+    "livy:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
