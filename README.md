@@ -93,7 +93,7 @@ Follow the steps below to install the project:
 1. Clone this repository to your local environment.
 
 ```bash 
-git clone https://github.com/Estagio-ADS-1-2024/bigdata-docker.git
+git clone https://github.com/SamuelFSNunes/Software_Camadas.git
 ```
 
 2. Run the Docker initialization command.
