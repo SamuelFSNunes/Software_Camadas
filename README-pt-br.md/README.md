@@ -32,20 +32,23 @@ Siga os passos abaixo para instalar o projeto:
 1. Clone este repositório para o seu ambiente local.
 
 ```bash
-git clone https://github.com/Estagio-ADS-1-2024/bigdata-docker.git
+git clone https://github.com/SamuelFSNunes/Software_Camadas.git
 ```
 
-2. Navegue até o diretório do projeto.
-
-```bash
-cd bigdata-docker
-```
-
-3. Execute o comando de inicialização do Docker.
+2. Execute o comando de inicialização do Docker.
 
 ```bash
 docker compose up --build
 ```
+
+## Montagem
+
+- Acessar o MinIO através do link (http://localhost:9001)
+- Entra utilizando as seguintes credenciais
+  - usuário: minioadmin
+  - senha: minioadmin
+- Acessar a aba Bucket e ciclar em **create bucket**
+- Em bucket name digitar `warehouse` e selecionar **create bucket**
 
 ## Configuração
 
