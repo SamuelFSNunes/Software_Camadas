@@ -130,6 +130,8 @@ If the services are not functioning as expected, follow these troubleshooting st
 
 This project is maintained by:
 
-- Renan Henrique - [GitHub](https://github.com/RenanHB2SL)
-- Samuel Nunes - [GitHub](https://github.com/SamuelFSNunes)
-- Rafael Mattos - [GitHub](https://github.com/RafaMattss)
+- Kelvin Silvestre
+- Lucas Custodio
+- Sergio Ricardo
+- Samuel Nunes
+- Rafael Mattos
