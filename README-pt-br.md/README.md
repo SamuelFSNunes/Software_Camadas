@@ -69,6 +69,8 @@ Se os serviços não estiverem funcionando conforme esperado, siga estas etapas 
 
 Este projeto é mantido por:
 
-- Renan Henrique - [GitHub](https://github.com/RenanHB2SL)
-- Samuel Nunes - [GitHub](https://github.com/SamuelFSNunes)
-- Rafael Mattos - [GitHub](https://github.com/RafaMattss)
+- Kelvin Silvestre
+- Lucas Custodio
+- Sergio Ricardo
+- Samuel Nunes
+- Rafael Mattos
